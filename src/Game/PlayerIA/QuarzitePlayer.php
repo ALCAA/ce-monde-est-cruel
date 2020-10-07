@@ -7,7 +7,7 @@ use Hackathon\Game\Result;
 /**
  * Class QuarzitePlayers
  * @package Hackathon\PlayerIA
- * @author YOUR NAME HERE
+ * @author Antoine Trollet
  */
 class QuarzitePlayer extends Player
 {
@@ -17,9 +17,21 @@ class QuarzitePlayer extends Player
 
     public function getChoice()
     {
-        // -------------------------------------    -----------------------------------------------------
-        // How to get my Last Choice           ?    $this->result->getLastChoiceFor($this->mySide) -- if 0 (first round)
-        // How to get the opponent Last Choice ?    $this->result->getLastChoiceFor($this->opponentSide) -- if 0 (first round)
+        // ---------------------------   $this->result->getLastChoiceFor($this->mySide) -- if 0 (first round)
+        // How to get the opponent Last Choice ?
+        if (($this->result->getLastChoiceFor($this->opponentSide) != 0) && ($this->result->getLastChoiceFor($this->opponentSide::paperChoice()) ))
+        {
+            return parent::scissorsChoice();
+        }
+
+        if (($this->result->getLastChoiceFor($this->opponentSide) != 0) && ($this->result->getLastChoiceFor($this->opponentSide::rockChoice()) ))
+        {
+            return parent::paperChoice();
+        }
+        else
+        {
+            return parent::rockChoice();
+        }
         // -------------------------------------    -----------------------------------------------------
         // How to get my Last Score            ?    $this->result->getLastScoreFor($this->mySide) -- if 0 (first round)
         // How to get the opponent Last Score  ?    $this->result->getLastScoreFor($this->opponentSide) -- if 0 (first round)
@@ -40,9 +52,6 @@ class QuarzitePlayer extends Player
         // -------------------------------------    -----------------------------------------------------
         // How can i display the result of each round ? $this->prettyDisplay()
         // -------------------------------------    -----------------------------------------------------
-
-
-        return parent::paperChoice();
 
     }
 };
