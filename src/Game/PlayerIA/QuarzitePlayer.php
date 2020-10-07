@@ -17,29 +17,11 @@ class QuarzitePlayer extends Player
 
     public function getChoice()
     {
-        if ($this->result->getNbRound() < 10)
+        if ($this->result->getNbRound() < 20)
         {
             return $this->CounterChoice();
         }
-        if ($this->result->getNbRound() < 50)
-        {
-            if ($this->result->getLastScoreFor($this->mySide) == 0)
-            {
-                if ($this->result->getLastScoreFor($this->opponentSide) == "rock")
-                {
-                    return parent::rockChoice();
-                }
-                else
-                {
-                    return parent::paperChoice();
-                }
-            }
-            else
-            {
-                return $this->CounterChoice();
-            }
-        }
-        if ($this->result->getNbRound() < 85)
+        if ($this->result->getLastScoreFor($this->mySide) < $this->result->getLastScoreFor($this->opponentSide))
         {
             return $this->LostChoice();
         }
@@ -69,7 +51,7 @@ class QuarzitePlayer extends Player
     {
         if ($this->result->getLastChoiceFor($this->opponentSide) == "rock")
         {
-            return parent::paperChoice();
+            return parent::scissorsChoice();
         }
         if ($this->result->getLastChoiceFor($this->opponentSide) == "paper")
         {
@@ -77,7 +59,7 @@ class QuarzitePlayer extends Player
         }
         else
         {
-            return parent::scissorsChoice();
+            return parent::paperChoice();
         }
     }
 };
