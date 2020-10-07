@@ -47,15 +47,15 @@ class QuarzitePlayer extends Player
     {
         if ($this->result->getLastChoiceFor($this->opponentSide) == "rock")
         {
-            return parent::scissorsChoice();
+            return parent::rockChoice();
         }
         if ($this->result->getLastChoiceFor($this->opponentSide) == "paper")
         {
-            return parent::rockChoice();
+            return parent::paperChoice();
         }
         else
         {
-            return parent::paperChoice();
+            return parent::scissorsChoice();
         }
     }
 };
