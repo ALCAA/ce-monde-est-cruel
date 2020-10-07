@@ -17,9 +17,33 @@ class QuarzitePlayer extends Player
 
     public function getChoice()
     {
-        // ---------------------------   $this->result->getLastChoiceFor($this->mySide) -- if 0 (first round)
-        // How to get the opponent Last Choice ?
-        if ($this->result->getLastChoiceFor($this->opponentSide) == "rock");
+        if ($this->result->getNbRound() < 10)
+        {
+            return $this->CounterChoice();
+        }
+        else
+        {
+            if ($this->result->getLastScoreFor($this->mySide) == 0)
+            {
+                if ($this->result->getLastScoreFor($this->opponentSide) == "rock")
+                {
+                    return parent::rockChoice();
+                }
+                else
+                {
+                    return parent::paperChoice();
+                }
+            }
+            else
+            {
+                return $this->CounterChoice();
+            }
+        }
+    }
+
+    public function CounterChoice()
+    {
+        if ($this->result->getLastChoiceFor($this->opponentSide) == "rock")
         {
             return parent::paperChoice();
         }
@@ -31,7 +55,8 @@ class QuarzitePlayer extends Player
         {
             return parent::rockChoice();
         }
-        
+    }
+};
         // -------------------------------------    -----------------------------------------------------
         // How to get my Last Score            ?    $this->result->getLastScoreFor($this->mySide) -- if 0 (first round)
         // How to get the opponent Last Score  ?    $this->result->getLastScoreFor($this->opponentSide) -- if 0 (first round)
@@ -52,6 +77,3 @@ class QuarzitePlayer extends Player
         // -------------------------------------    -----------------------------------------------------
         // How can i display the result of each round ? $this->prettyDisplay()
         // -------------------------------------    -----------------------------------------------------
-
-    }
-};
