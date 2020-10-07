@@ -24,13 +24,13 @@ class QuarzitePlayer extends Player
             return parent::scissorsChoice();
         }
 
-        if (($this->result->getLastChoiceFor($this->opponentSide) != 0) && ($this->result->getLastChoiceFor($this->opponentSide::rockChoice()) ))
+        if (($this->result->getLastChoiceFor($this->opponentSide) != 0) && ($this->result->getLastChoiceFor($this->opponentSide::scissorsChoice()) ))
         {
-            return parent::paperChoice();
+            return parent::rockChoice();
         }
         else
         {
-            return parent::rockChoice();
+            return parent::paperChoice();
         }
         // -------------------------------------    -----------------------------------------------------
         // How to get my Last Score            ?    $this->result->getLastScoreFor($this->mySide) -- if 0 (first round)
