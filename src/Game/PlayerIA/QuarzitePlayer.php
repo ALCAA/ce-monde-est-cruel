@@ -19,19 +19,19 @@ class QuarzitePlayer extends Player
     {
         // ---------------------------   $this->result->getLastChoiceFor($this->mySide) -- if 0 (first round)
         // How to get the opponent Last Choice ?
-        if (($this->result->getLastChoiceFor($this->opponentSide) != 0) && ($this->result->getLastChoiceFor($this->opponentSide::paperChoice()) ))
-        {
-            return parent::scissorsChoice();
-        }
-
-        if (($this->result->getLastChoiceFor($this->opponentSide) != 0) && ($this->result->getLastChoiceFor($this->opponentSide::scissorsChoice()) ))
-        {
-            return parent::rockChoice();
-        }
-        else
+        if ($this->result->getLastChoiceFor($this->opponentSide) == "rock");
         {
             return parent::paperChoice();
         }
+        if ($this->result->getLastChoiceFor($this->opponentSide) == "paper")
+        {
+            return parent::scissorsChoice();
+        }
+        else
+        {
+            return parent::rockChoice();
+        }
+        
         // -------------------------------------    -----------------------------------------------------
         // How to get my Last Score            ?    $this->result->getLastScoreFor($this->mySide) -- if 0 (first round)
         // How to get the opponent Last Score  ?    $this->result->getLastScoreFor($this->opponentSide) -- if 0 (first round)
