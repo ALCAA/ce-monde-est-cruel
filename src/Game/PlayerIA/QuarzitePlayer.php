@@ -8,6 +8,10 @@ use Hackathon\Game\Result;
  * Class QuarzitePlayers
  * @package Hackathon\PlayerIA
  * @author Antoine Trollet
+ * Strat : Après avoir essayé différentes stratégiques, je suis arrivé à la conclusion que Vu que de nombreuses personnes ont décidé de faire une technique qui joue le coup inverse de l'adversaire. J'ai choisi de :
+ - si je perds, je rejoue le même coup
+ - si je gagne, je joue le coup inverse
+ - le premier coup, je commence par jouer ciseaux
  */
 class QuarzitePlayer extends Player
 {
@@ -19,7 +23,7 @@ class QuarzitePlayer extends Player
     {
         if ($this->result->getNbRound() == 0)
         {
-            return $this->paperChoice();
+            return $this->scissorsChoice();
         }
         if ($this->result->getLastScoreFor($this->mySide) < $this->result->getLastScoreFor($this->opponentSide))
         {
