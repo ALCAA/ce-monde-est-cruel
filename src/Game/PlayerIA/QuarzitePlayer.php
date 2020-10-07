@@ -17,10 +17,6 @@ class QuarzitePlayer extends Player
 
     public function getChoice()
     {
-        if ($this->result->getNbRound() < 20)
-        {
-            return $this->CounterChoice();
-        }
         if ($this->result->getLastScoreFor($this->mySide) < $this->result->getLastScoreFor($this->opponentSide))
         {
             return $this->LostChoice();
